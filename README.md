@@ -28,3 +28,11 @@ PATH=$PATH:/opt/puppetlabs/puppet/bin
 * test gem command: run gem.
 * install gem r10k:gem install r10k.  r10k isa library to deploy puppet code from github unto your server.
 * run puppet on the system: `puppet agent -t`
+
+### Set up acontrol repository
+* Create a repo in Githup (this repo)
+* As a root user create a dir `mkdir /etc/puppetlabs/r10k`
+* Create a yaml file `vim /etc/puppetlabs/r10k/r10k.yaml`
+* run r10k command to deploy puppet code: `r10k deploy environment -p`. The -p flag tells r10k to download and deploy any external code modules defined in the Puppetfile, but we haven't set that up yet
+* Check your environment `cd /etc/puppetlabs/code/environment`. You will see a directory with the name of your branch
+
