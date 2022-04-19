@@ -15,7 +15,8 @@ node 'master.puppet.vm' {
   # add a location to save facter's report
   file {'/root/REPORT':
     ensure => file,
-    content => $fqdn, #report a fully-qualified-domain-name of the node
+    #content => $fqdn, #report a fully-qualified-domain-name of the node
+    content => "Welcome to ${fqdn}", #use of interpolation
   }
 }
 
