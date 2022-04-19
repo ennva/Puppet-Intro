@@ -16,7 +16,7 @@ node 'master.puppet.vm' {
   file {'/root/REPORT':
     ensure => file,
     #content => $fqdn, #report a fully-qualified-domain-name of the node
-    content => "Welcome to ${fqdn}", #use of interpolation
+    content => "Welcome to ${fqdn}\n", #use of interpolation
   }
 }
 
