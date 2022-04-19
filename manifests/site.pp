@@ -13,3 +13,13 @@ node default {
 node 'master.puppet.vm' {
   include role::master_server
 }
+
+# matching all node starting with web string
+node /^web/ {
+  include role::app_server
+}
+
+# matching all node starting with db string
+node /^db/ {
+  include role::db_server
+}
