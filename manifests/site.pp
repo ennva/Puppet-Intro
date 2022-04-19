@@ -19,7 +19,7 @@ node 'master.puppet.vm' {
     content => "Welcome to ${fqdn}\n", #use of interpolation
   }
 }
-node 'minecraft.puppet.vm' {
+node 'minetest.puppet.vm' {
   include role::minecraft_server
 }
 # matching all node starting with web string
