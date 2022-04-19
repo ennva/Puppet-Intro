@@ -18,4 +18,9 @@ class minecraft {
     ensure => file,
     source => 'puppet:///modules/minecraft/minecraft.service' # the 3 slashes mean Puppet will pick up the default fileshare at the beginning
   }
+  # Set the service to start a boot
+  service {'minecraft':
+    ensure => running,
+    enable => true,
+  }
 }
