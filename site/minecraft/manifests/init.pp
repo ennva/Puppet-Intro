@@ -1,16 +1,20 @@
 # In init.pp the name of the clas should be the same as the module.Here minecraft
+# In a  complex module, is good to define the order way things happen. Ex: Service need to be run after directory is created and java is installed
 class minecraft {
-  file {'/opt/minecraft':
+  $url = 'https://launcher.mojang.com/mc/game/1.12.2/server/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar'
+  $install_dir = '/opt/minecraft'
+  file {$install_dir:
     ensure => directory,
   }
-  file {'/opt/minecraft/server.jar':
+  file {"${install_dir}/server.jar":
     ensure => file,
-    source => 'https://launcher.mojang.com/mc/game/1.12.2/server/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar',
+    source => $url, 
+    before => Service['minecraft'], #This jar need to be download before a service should run
   }
   package {'java':
     ensure => present,
   }
-  file {'/opt/minecraft/eula.txt':
+  file {"${install_dir}/eula.txt":
     ensure => file,
     content => 'eula=true',
   }
@@ -22,5 +26,7 @@ class minecraft {
   service {'minecraft':
     ensure => running,
     enable => true,
+    #This service to run require 3 things(java, eula.txt to be set and a daemon service to be created)
+    require => [Package['java'],File["${install_dir}/eula.txt"],File['/etc/systemd/system/minecraft.service']],
   }
 }
