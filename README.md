@@ -70,7 +70,7 @@ PATH=$PATH:/opt/puppetlabs/puppet/bin
 ### Orchestration in Puppet
 * Use of tool <b>MCollective(Marionette Collective)</b>: trigger actions on nodes. Operate on publish-subscribe module: single server(master) maintain the queue suach as ActiveMQ or RabbitMQ and other nodes publish/subscribe to the queue server. Downside:impossible to ensure that the machine has actually received the message
 * <b>Ansible or SSH in a for loop</b>: Ansible overlaps with Puppet functionality. it is agentless, you just need SSh access to manage your node. But Ansible doesn't manage desired state. So many combine both tools to manage their infrastructure: Ansible for orchestration and procedural tasks and Puppet for maintaining desired state.
-* Puppet <b>Bolt</u> is a newest orchestration option for Puppet. It's agent-less using SSH on the backend.
+* Puppet <b>Bolt</b> is a newest orchestration option for Puppet. It's agent-less using SSH on the backend.
 
 ### What happens when Puppet runs ?
 * When agent run, first triggers a program called <b>facter</b> to collect detail about the system
@@ -113,7 +113,7 @@ class profile::ssh_server {
 ### Puppet Module (Set of directories that follow a certain pattern)
 * Manifests directory (<b>/manifests</b>): where puppet code is put
 	- One class per manifest
-	- class's name need to follow a specific naming convention. For the main class in the module, a class should have a same name as the module itself and should be <b><i>manifest/init.pp</i></p>. For example: the nginx class in the nginx module is the manifests/init.pp
+	- class's name need to follow a specific naming convention. For the main class in the module, a class should have a same name as the module itself and should be <b><i>manifest/init.pp</i></b>, For example: the nginx class in the nginx module is the manifests/init.pp
 * Files directory (<b>/files</b>): contain any static files such as configuration files that you use inside your module. Should be shoter file, large file need to be download externally
 * templates directory (<b>/templates</b>): where the dinamic template go. Template allow you to do think like create config files based on the parameters provided to the module. The master can use for example the fact about FQDN send by the agent to include it in the config file.
 * lib directory (<b>/lib</b>): where to add additional code to extend the functionality of Puppet
