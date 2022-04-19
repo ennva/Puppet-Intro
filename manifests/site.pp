@@ -1,6 +1,6 @@
 node default {
   # This is how you defined a resource of type file
-  #file {'/root/README':
+  # file {'/root/README':
   #  ensure  => file,
   # content => 'This is a readme file..',
   #  owner   => 'root'
@@ -12,6 +12,11 @@ node default {
 }
 node 'master.puppet.vm' {
   include role::master_server
+  # add a location to save facter's report
+  file {'/root/REPORT'
+    ensure => file,
+    content +> $fqnd, #report a fully-qualified-name-domain of the node
+  }
 }
 
 # matching all node starting with web string
