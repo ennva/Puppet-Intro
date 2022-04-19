@@ -13,9 +13,9 @@ node default {
 node 'master.puppet.vm' {
   include role::master_server
   # add a location to save facter's report
-  file {'/root/REPORT'
+  file {'/root/REPORT':
     ensure => file,
-    content +> $fqnd, #report a fully-qualified-name-domain of the node
+    content => $fqnd, #report a fully-qualified-name-domain of the node
   }
 }
 
