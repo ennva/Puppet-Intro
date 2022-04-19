@@ -22,7 +22,11 @@ class minecraft (
   }
   file {'/etc/systemd/system/minecraft.service':
     ensure => file,
-    source => 'puppet:///modules/minecraft/minecraft.service' # the 3 slashes mean Puppet will pick up the default fileshare at the beginning
+    #source => 'puppet:///modules/minecraft/minecraft.service' # the 3 slashes mean Puppet will pick up the default fileshare at the beginning
+    # instead of source, we can use 'content' with the content of the template file. epp(name_of_module, parameters_to_pass_to_the_template)
+    content => epp('minecraft/minecraft.service',{
+      install_dir => $install_dir
+    })
   }
   # Set the service to start a boot
   service {'minecraft':
