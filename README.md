@@ -29,7 +29,7 @@ PATH=$PATH:/opt/puppetlabs/puppet/bin
 * install gem r10k:gem install r10k.  r10k isa library to deploy puppet code from github unto your server.
 * run puppet on the system: `puppet agent -t`
 
-### Set up acontrol repository
+### Set up a control repository
 * Create a repo in Githup (this repo)
 * As a root user create a dir `mkdir /etc/puppetlabs/r10k`
 * Create a yaml file `vim /etc/puppetlabs/r10k/r10k.yaml`
